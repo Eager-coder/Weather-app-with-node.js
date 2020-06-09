@@ -8,7 +8,7 @@ app.get('/', (req, res) => {
     res.send('index')
 })
 app.get('*', (req, res) => {
-    res.send('404')
+    res.sendFile('public/404.html', {root: __dirname})
 })
 app.get('/weather', (req, res) => {
     const location = req.query.address
