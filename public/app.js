@@ -8,15 +8,12 @@ const humidity = document.getElementById('humidity');
 const wind = document.getElementById('wind');
 const changeLoc = document.getElementById('change-loc');
 
-
 cityInput.addEventListener('input', () => {
-    fetch(`http://localhost:3000/weather?address=${cityInput.value}`)
+    fetch(`http://localhost:80/weather?address=${cityInput.value}`)
     .then(res => res.json())
     .then(data => renderWeatherData(data)) 
     .catch(error => console.log(error))
 })
-
-
 
 function renderWeatherData(object){
     renderDate(object.dt);
@@ -43,9 +40,7 @@ function renderDate(unixTimestamp){
         date.innerText = ' ';
     }else{
         date.innerText = dayNames[currentDate.getDay()] + ' ' + (currentDate.getDate() ) + ' ' + monthNames[currentDate.getMonth()];
-    }
-    
-    
+    }   
 };
 
 function setIcons(desc){
