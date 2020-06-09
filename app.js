@@ -1,7 +1,6 @@
 const request = require('request')
 const express = require('express')
 const app = express()
-require('dotenv').config()
 
 app.use(express.static('public'))
 
@@ -18,10 +17,11 @@ app.get('/weather', (req, res) => {
     } else {
         getWeather(location, (error, response) => {
             if (error) {
-                res.send(error)
+                res.send({error: error})
             } else if (response.body.message === 'city not found') {
                 res.send({error: 'City not found'})
             } else {
+                console.log(response.body)
                 res.send( response.body)
             }
         }) 
@@ -42,3 +42,4 @@ const getWeather = (cityName, callback) => {
     })
 }
 
+require('dotenv').config()
